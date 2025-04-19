@@ -1,10 +1,24 @@
 import random
+import ctypes
+import time
+
 LowNum=int(input("Low:"))
 MaxNum=int(input("Max:"))
+
+Seed1=ctypes.addressof(ctypes.c_int(LowNum))
+Seed2=ctypes.addressof(ctypes.c_int(MaxNum))
+Seed3=time.time()
+Seed=Seed1+Seed2+Seed3
+random.seed(Seed)
+print("The seed has been set.The current seed is : %d" % Seed)
+
 if LowNum>MaxNum:
     print("Low number is greater than max number.")
     LowNum=int(input("Low:"))
     MaxNum=int(input("Max:"))
+
+print("--------------------")
+
 while True:
     print(random.randint(LowNum,MaxNum))
     UserInput=input("Press enter to continue.Type 'exit' to quit.Type 'settings' to change settings:")
